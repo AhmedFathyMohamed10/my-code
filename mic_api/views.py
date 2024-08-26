@@ -444,6 +444,9 @@ def disease_search(request):
                 fields=['code', 'title_en', 'title_ar'],
                 fuzziness='AUTO'
             )
+        s = s.extra(
+            collapse={"field": "code.keyword"}
+        )
 
         # Apply pagination
         start = (page - 1) * PAGE_SIZE
